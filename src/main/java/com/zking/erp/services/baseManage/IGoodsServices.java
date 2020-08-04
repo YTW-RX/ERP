@@ -1,4 +1,4 @@
-package com.zking.erp.services.baseManager;
+package com.zking.erp.services.baseManage;
 
 import org.springframework.stereotype.Service;
 
