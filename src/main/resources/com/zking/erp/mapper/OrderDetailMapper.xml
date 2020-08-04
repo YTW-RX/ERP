@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.erp.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.erp.model.OrderDetail" >
+    <constructor >
+      <idArg column="orderdetailId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="oPrice" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="oNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="oMoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="oEndtime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="oEnder" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="storeId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="oState" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="oId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderdetailId, gId, gName, oPrice, oNum, oMoney, oEndtime, oEnder, storeId, oState, 
+    oId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where orderdetailId = #{orderdetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where orderdetailId = #{orderdetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.model.OrderDetail" >
+    insert into orderdetail (orderdetailId, gId, gName, 
+      oPrice, oNum, oMoney, oEndtime, 
+      oEnder, storeId, oState, 
+      oId)
+    values (#{orderdetailid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, 
+      #{oprice,jdbcType=REAL}, #{onum,jdbcType=INTEGER}, #{omoney,jdbcType=REAL}, #{oendtime,jdbcType=DATE}, 
+      #{oender,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, #{ostate,jdbcType=BIT}, 
+      #{oid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.model.OrderDetail" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderdetailid != null" >
+        orderdetailId,
+      </if>
+      <if test="gid != null" >
+        gId,
+      </if>
+      <if test="gname != null" >
+        gName,
+      </if>
+      <if test="oprice != null" >
+        oPrice,
+      </if>
+      <if test="onum != null" >
+        oNum,
+      </if>
+      <if test="omoney != null" >
+        oMoney,
+      </if>
+      <if test="oendtime != null" >
+        oEndtime,
+      </if>
+      <if test="oender != null" >
+        oEnder,
+      </if>
+      <if test="storeid != null" >
+        storeId,
+      </if>
+      <if test="ostate != null" >
+        oState,
+      </if>
+      <if test="oid != null" >
+        oId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderdetailid != null" >
+        #{orderdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gname != null" >
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="oprice != null" >
+        #{oprice,jdbcType=REAL},
+      </if>
+      <if test="onum != null" >
+        #{onum,jdbcType=INTEGER},
+      </if>
+      <if test="omoney != null" >
+        #{omoney,jdbcType=REAL},
+      </if>
+      <if test="oendtime != null" >
+        #{oendtime,jdbcType=DATE},
+      </if>
+      <if test="oender != null" >
+        #{oender,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="ostate != null" >
+        #{ostate,jdbcType=BIT},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.OrderDetail" >
+    update orderdetail
+    <set >
+      <if test="gid != null" >
+        gId = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gname != null" >
+        gName = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="oprice != null" >
+        oPrice = #{oprice,jdbcType=REAL},
+      </if>
+      <if test="onum != null" >
+        oNum = #{onum,jdbcType=INTEGER},
+      </if>
+      <if test="omoney != null" >
+        oMoney = #{omoney,jdbcType=REAL},
+      </if>
+      <if test="oendtime != null" >
+        oEndtime = #{oendtime,jdbcType=DATE},
+      </if>
+      <if test="oender != null" >
+        oEnder = #{oender,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="ostate != null" >
+        oState = #{ostate,jdbcType=BIT},
+      </if>
+      <if test="oid != null" >
+        oId = #{oid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderdetailId = #{orderdetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.OrderDetail" >
+    update orderdetail
+    set gId = #{gid,jdbcType=INTEGER},
+      gName = #{gname,jdbcType=VARCHAR},
+      oPrice = #{oprice,jdbcType=REAL},
+      oNum = #{onum,jdbcType=INTEGER},
+      oMoney = #{omoney,jdbcType=REAL},
+      oEndtime = #{oendtime,jdbcType=DATE},
+      oEnder = #{oender,jdbcType=INTEGER},
+      storeId = #{storeid,jdbcType=INTEGER},
+      oState = #{ostate,jdbcType=BIT},
+      oId = #{oid,jdbcType=INTEGER}
+    where orderdetailId = #{orderdetailid,jdbcType=INTEGER}
+  </update>
+</mapper>

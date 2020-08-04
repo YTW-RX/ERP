@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.erp.mapper.GoodsTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.erp.model.GoodsType" >
+    <constructor >
+      <idArg column="gtId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gType" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gtId, gType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodstype
+    where gtId = #{gtid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodstype
+    where gtId = #{gtid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.model.GoodsType" >
+    insert into goodstype (gtId, gType)
+    values (#{gtid,jdbcType=INTEGER}, #{gtype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.model.GoodsType" >
+    insert into goodstype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gtid != null" >
+        gtId,
+      </if>
+      <if test="gtype != null" >
+        gType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gtid != null" >
+        #{gtid,jdbcType=INTEGER},
+      </if>
+      <if test="gtype != null" >
+        #{gtype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.GoodsType" >
+    update goodstype
+    <set >
+      <if test="gtype != null" >
+        gType = #{gtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gtId = #{gtid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.GoodsType" >
+    update goodstype
+    set gType = #{gtype,jdbcType=VARCHAR}
+    where gtId = #{gtid,jdbcType=INTEGER}
+  </update>
+</mapper>

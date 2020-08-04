@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.erp.mapper.EmpMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.erp.model.Emp" >
+    <constructor >
+      <idArg column="empId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="empUserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empPwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empSex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empEmail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empTel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empAddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="empBirthday" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="dId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    empId, empUserName, empPwd, empName, empSex, empEmail, empTel, empAddress, empBirthday, 
+    dId, rId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from emp
+    where empId = #{empid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from emp
+    where empId = #{empid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.model.Emp" >
+    insert into emp (empId, empUserName, empPwd, 
+      empName, empSex, empEmail, 
+      empTel, empAddress, empBirthday, 
+      dId, rId)
+    values (#{empid,jdbcType=INTEGER}, #{empusername,jdbcType=VARCHAR}, #{emppwd,jdbcType=VARCHAR}, 
+      #{empname,jdbcType=VARCHAR}, #{empsex,jdbcType=VARCHAR}, #{empemail,jdbcType=VARCHAR}, 
+      #{emptel,jdbcType=VARCHAR}, #{empaddress,jdbcType=VARCHAR}, #{empbirthday,jdbcType=DATE}, 
+      #{did,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.model.Emp" >
+    insert into emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empid != null" >
+        empId,
+      </if>
+      <if test="empusername != null" >
+        empUserName,
+      </if>
+      <if test="emppwd != null" >
+        empPwd,
+      </if>
+      <if test="empname != null" >
+        empName,
+      </if>
+      <if test="empsex != null" >
+        empSex,
+      </if>
+      <if test="empemail != null" >
+        empEmail,
+      </if>
+      <if test="emptel != null" >
+        empTel,
+      </if>
+      <if test="empaddress != null" >
+        empAddress,
+      </if>
+      <if test="empbirthday != null" >
+        empBirthday,
+      </if>
+      <if test="did != null" >
+        dId,
+      </if>
+      <if test="rid != null" >
+        rId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empusername != null" >
+        #{empusername,jdbcType=VARCHAR},
+      </if>
+      <if test="emppwd != null" >
+        #{emppwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empsex != null" >
+        #{empsex,jdbcType=VARCHAR},
+      </if>
+      <if test="empemail != null" >
+        #{empemail,jdbcType=VARCHAR},
+      </if>
+      <if test="emptel != null" >
+        #{emptel,jdbcType=VARCHAR},
+      </if>
+      <if test="empaddress != null" >
+        #{empaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empbirthday != null" >
+        #{empbirthday,jdbcType=DATE},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Emp" >
+    update emp
+    <set >
+      <if test="empusername != null" >
+        empUserName = #{empusername,jdbcType=VARCHAR},
+      </if>
+      <if test="emppwd != null" >
+        empPwd = #{emppwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null" >
+        empName = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empsex != null" >
+        empSex = #{empsex,jdbcType=VARCHAR},
+      </if>
+      <if test="empemail != null" >
+        empEmail = #{empemail,jdbcType=VARCHAR},
+      </if>
+      <if test="emptel != null" >
+        empTel = #{emptel,jdbcType=VARCHAR},
+      </if>
+      <if test="empaddress != null" >
+        empAddress = #{empaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empbirthday != null" >
+        empBirthday = #{empbirthday,jdbcType=DATE},
+      </if>
+      <if test="did != null" >
+        dId = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        rId = #{rid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where empId = #{empid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Emp" >
+    update emp
+    set empUserName = #{empusername,jdbcType=VARCHAR},
+      empPwd = #{emppwd,jdbcType=VARCHAR},
+      empName = #{empname,jdbcType=VARCHAR},
+      empSex = #{empsex,jdbcType=VARCHAR},
+      empEmail = #{empemail,jdbcType=VARCHAR},
+      empTel = #{emptel,jdbcType=VARCHAR},
+      empAddress = #{empaddress,jdbcType=VARCHAR},
+      empBirthday = #{empbirthday,jdbcType=DATE},
+      dId = #{did,jdbcType=INTEGER},
+      rId = #{rid,jdbcType=INTEGER}
+    where empId = #{empid,jdbcType=INTEGER}
+  </update>
+</mapper>
