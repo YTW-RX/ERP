@@ -22,17 +22,13 @@
     oId, oCreateTime, oCheckTime, oStarTime, oEndTime, oType, oCreater, oChecker, oStarter, 
     oEnder, supplierId, oTotalMoney, oState
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectOrders" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from orders
     where oId = #{oid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from orders
-    where oId = #{oid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zking.erp.model.Orders" >
+  <insert id="insertOrders" parameterType="com.zking.erp.model.Orders" >
     insert into orders (oId, oCreateTime, oCheckTime, 
       oStarTime, oEndTime, oType, 
       oCreater, oChecker, oStarter, 
@@ -44,7 +40,7 @@
       #{oender,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{ototalmoney,jdbcType=REAL}, 
       #{ostate,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
+ <!-- <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
     insert into orders
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="oid != null" >
@@ -129,6 +125,7 @@
       </if>
     </trim>
   </insert>
+  <insert id="addOrders"></insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Orders" >
     update orders
     <set >
@@ -186,5 +183,5 @@
       oTotalMoney = #{ototalmoney,jdbcType=REAL},
       oState = #{ostate,jdbcType=BIT}
     where oId = #{oid,jdbcType=INTEGER}
-  </update>
+  </update>-->
 </mapper>
