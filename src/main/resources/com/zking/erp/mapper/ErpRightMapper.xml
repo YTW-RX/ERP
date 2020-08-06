@@ -20,6 +20,12 @@
     from erpright
     where rCode = #{rcode,jdbcType=VARCHAR}
   </select>
+    <select id="getAllParentNodes" resultType="com.zking.erp.model.ErpRight">
+      select <include refid="Base_Column_List"/> from erpright where rparentcode=-1
+    </select>
+  <select id="getChildrenNodes" resultType="com.zking.erp.model.ErpRight">
+    select <include refid="Base_Column_List"/> from erpright where rparentcode=#{rcode}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from erpright
     where rCode = #{rcode,jdbcType=VARCHAR}
