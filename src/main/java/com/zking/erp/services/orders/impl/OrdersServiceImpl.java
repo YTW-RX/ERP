@@ -1,10 +1,13 @@
-package com.zking.erp.service.orders.impl;
+package com.zking.erp.services.orders.impl;
 
 import com.zking.erp.mapper.OrdersMapper;
 import com.zking.erp.model.Orders;
-import com.zking.erp.service.orders.IOrdersService;
+import com.zking.erp.services.orders.IOrdersService;
+import com.zking.erp.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrdersServiceImpl implements IOrdersService {
@@ -15,5 +18,15 @@ public class OrdersServiceImpl implements IOrdersService {
     @Override
     public int insertOrders(Orders orders) {
         return ordersMapper.insertOrders(orders);
+    }
+
+    @Override
+    public List<Orders> queryOrdersAllPager(PageBean pageBean) {
+        return ordersMapper.queryOrdersAllPager();
+    }
+
+    @Override
+    public int updateOrdersState(Orders orders) {
+        return ordersMapper.updateOrdersState(orders);
     }
 }

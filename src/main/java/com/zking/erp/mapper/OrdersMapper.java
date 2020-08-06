@@ -15,7 +15,10 @@ public interface OrdersMapper {
     Orders selectOrders(Integer oid);
 
     // 查询所有采购订单
-    List<Orders> queryOrdersAll();
+    List<Orders> queryOrdersAllPager();
+
+    //修改采购订单状态
+    int updateOrdersState(Orders orders);
 
     /*int deleteByPrimaryKey(Integer oid);
 

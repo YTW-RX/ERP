@@ -22,13 +22,22 @@
     oId, oCreateTime, oCheckTime, oStarTime, oEndTime, oType, oCreater, oChecker, oStarter, 
     oEnder, supplierId, oTotalMoney, oState
   </sql>
+    <update id="updateOrdersState" parameterType="com.zking.erp.model.Orders">
+        update orders
+        <set >
+            <if test="ostate != null" >
+                oState = #{ostate,jdbcType=BIT},
+            </if>
+        </set>
+        where oId = #{oid,jdbcType=INTEGER}
+    </update>
     <select id="selectOrders" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
         from orders
         where oId = #{oid,jdbcType=INTEGER}
     </select>
-    <select id="queryOrdersAll" resultMap="BaseResultMap" resultType="com.zking.erp.model.Orders">
+    <select id="queryOrdersAllPager" resultMap="BaseResultMap" resultType="com.zking.erp.model.Orders">
         select
         <include refid="Base_Column_List"/>
         from orders
