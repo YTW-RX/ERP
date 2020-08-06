@@ -1,16 +1,22 @@
 package com.zking.erp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Orders {
     private Integer oid;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ocreatetime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ochecktime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ostartime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date oendtime;
 
     private String otype;

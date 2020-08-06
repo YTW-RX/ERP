@@ -26,27 +26,10 @@
 
     <!--静态资源访问配置-->
     <!--4) 单独处理图片、样式、js等资源 -->
-    <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
+    <!--<mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>-->
     <!-- <mvc:resources location="/css/" mapping="/css/**"/>
      <mvc:resources location="/js/" mapping="/js/**"/>
      <mvc:resources location="WEB-INF/images/" mapping="/images/**"/>-->
-
-    <!--5.通过ResourceBundleMessageSource加载资源文件(basenames属性)-->
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>i18n</value>
-            </list>
-        </property>
-    </bean>
-
-    <!--6.指定语言区域解析器，由它来确定使用哪个语言-->
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
-
-    <!--7.配置国际化操作拦截器-->
-    <mvc:interceptors>
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
-    </mvc:interceptors>
 
     <!--8.文件上传解析器-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
