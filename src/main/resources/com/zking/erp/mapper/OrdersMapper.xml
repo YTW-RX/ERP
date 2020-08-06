@@ -1,190 +1,192 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zking.erp.mapper.OrdersMapper" >
-  <resultMap id="BaseResultMap" type="com.zking.erp.model.Orders" >
-    <constructor >
-      <idArg column="oId" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="oCreateTime" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="oCheckTime" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="oStarTime" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="oEndTime" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="oType" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="oCreater" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="oChecker" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="oStarter" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="oEnder" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="supplierId" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="oTotalMoney" jdbcType="REAL" javaType="java.lang.Float" />
-      <arg column="oState" jdbcType="BIT" javaType="java.lang.Boolean" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.zking.erp.mapper.OrdersMapper">
+    <resultMap id="BaseResultMap" type="com.zking.erp.model.Orders">
+        <constructor>
+            <idArg column="oId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="oCreateTime" jdbcType="DATE" javaType="java.util.Date"/>
+            <arg column="oCheckTime" jdbcType="DATE" javaType="java.util.Date"/>
+            <arg column="oStarTime" jdbcType="DATE" javaType="java.util.Date"/>
+            <arg column="oEndTime" jdbcType="DATE" javaType="java.util.Date"/>
+            <arg column="oType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="oCreater" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="oChecker" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="oStarter" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="oEnder" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="supplierId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="oTotalMoney" jdbcType="REAL" javaType="java.lang.Float"/>
+            <arg column="oState" jdbcType="BIT" javaType="java.lang.Boolean"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     oId, oCreateTime, oCheckTime, oStarTime, oEndTime, oType, oCreater, oChecker, oStarter, 
     oEnder, supplierId, oTotalMoney, oState
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from orders
-    where oId = #{oid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from orders
-    where oId = #{oid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zking.erp.model.Orders" >
-    insert into orders (oId, oCreateTime, oCheckTime, 
+    <select id="selectOrders" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where oId = #{oid,jdbcType=INTEGER}
+    </select>
+    <select id="queryOrdersAll" resultMap="BaseResultMap" resultType="com.zking.erp.model.Orders">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+    </select>
+    <insert id="insertOrders" parameterType="com.zking.erp.model.Orders">
+    insert into orders (oCreateTime, oCheckTime,
       oStarTime, oEndTime, oType, 
       oCreater, oChecker, oStarter, 
       oEnder, supplierId, oTotalMoney, 
       oState)
-    values (#{oid,jdbcType=INTEGER}, #{ocreatetime,jdbcType=DATE}, #{ochecktime,jdbcType=DATE}, 
+    values (#{ocreatetime,jdbcType=DATE}, #{ochecktime,jdbcType=DATE},
       #{ostartime,jdbcType=DATE}, #{oendtime,jdbcType=DATE}, #{otype,jdbcType=VARCHAR}, 
       #{ocreater,jdbcType=INTEGER}, #{ochecker,jdbcType=INTEGER}, #{ostarter,jdbcType=INTEGER}, 
       #{oender,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{ototalmoney,jdbcType=REAL}, 
       #{ostate,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
-    insert into orders
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="oid != null" >
-        oId,
-      </if>
-      <if test="ocreatetime != null" >
-        oCreateTime,
-      </if>
-      <if test="ochecktime != null" >
-        oCheckTime,
-      </if>
-      <if test="ostartime != null" >
-        oStarTime,
-      </if>
-      <if test="oendtime != null" >
-        oEndTime,
-      </if>
-      <if test="otype != null" >
-        oType,
-      </if>
-      <if test="ocreater != null" >
-        oCreater,
-      </if>
-      <if test="ochecker != null" >
-        oChecker,
-      </if>
-      <if test="ostarter != null" >
-        oStarter,
-      </if>
-      <if test="oender != null" >
-        oEnder,
-      </if>
-      <if test="supplierid != null" >
-        supplierId,
-      </if>
-      <if test="ototalmoney != null" >
-        oTotalMoney,
-      </if>
-      <if test="ostate != null" >
-        oState,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="oid != null" >
-        #{oid,jdbcType=INTEGER},
-      </if>
-      <if test="ocreatetime != null" >
-        #{ocreatetime,jdbcType=DATE},
-      </if>
-      <if test="ochecktime != null" >
-        #{ochecktime,jdbcType=DATE},
-      </if>
-      <if test="ostartime != null" >
-        #{ostartime,jdbcType=DATE},
-      </if>
-      <if test="oendtime != null" >
-        #{oendtime,jdbcType=DATE},
-      </if>
-      <if test="otype != null" >
-        #{otype,jdbcType=VARCHAR},
-      </if>
-      <if test="ocreater != null" >
-        #{ocreater,jdbcType=INTEGER},
-      </if>
-      <if test="ochecker != null" >
-        #{ochecker,jdbcType=INTEGER},
-      </if>
-      <if test="ostarter != null" >
-        #{ostarter,jdbcType=INTEGER},
-      </if>
-      <if test="oender != null" >
-        #{oender,jdbcType=INTEGER},
-      </if>
-      <if test="supplierid != null" >
-        #{supplierid,jdbcType=INTEGER},
-      </if>
-      <if test="ototalmoney != null" >
-        #{ototalmoney,jdbcType=REAL},
-      </if>
-      <if test="ostate != null" >
-        #{ostate,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Orders" >
-    update orders
-    <set >
-      <if test="ocreatetime != null" >
-        oCreateTime = #{ocreatetime,jdbcType=DATE},
-      </if>
-      <if test="ochecktime != null" >
-        oCheckTime = #{ochecktime,jdbcType=DATE},
-      </if>
-      <if test="ostartime != null" >
-        oStarTime = #{ostartime,jdbcType=DATE},
-      </if>
-      <if test="oendtime != null" >
-        oEndTime = #{oendtime,jdbcType=DATE},
-      </if>
-      <if test="otype != null" >
-        oType = #{otype,jdbcType=VARCHAR},
-      </if>
-      <if test="ocreater != null" >
-        oCreater = #{ocreater,jdbcType=INTEGER},
-      </if>
-      <if test="ochecker != null" >
-        oChecker = #{ochecker,jdbcType=INTEGER},
-      </if>
-      <if test="ostarter != null" >
-        oStarter = #{ostarter,jdbcType=INTEGER},
-      </if>
-      <if test="oender != null" >
-        oEnder = #{oender,jdbcType=INTEGER},
-      </if>
-      <if test="supplierid != null" >
-        supplierId = #{supplierid,jdbcType=INTEGER},
-      </if>
-      <if test="ototalmoney != null" >
-        oTotalMoney = #{ototalmoney,jdbcType=REAL},
-      </if>
-      <if test="ostate != null" >
-        oState = #{ostate,jdbcType=BIT},
-      </if>
-    </set>
-    where oId = #{oid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Orders" >
-    update orders
-    set oCreateTime = #{ocreatetime,jdbcType=DATE},
-      oCheckTime = #{ochecktime,jdbcType=DATE},
-      oStarTime = #{ostartime,jdbcType=DATE},
-      oEndTime = #{oendtime,jdbcType=DATE},
-      oType = #{otype,jdbcType=VARCHAR},
-      oCreater = #{ocreater,jdbcType=INTEGER},
-      oChecker = #{ochecker,jdbcType=INTEGER},
-      oStarter = #{ostarter,jdbcType=INTEGER},
-      oEnder = #{oender,jdbcType=INTEGER},
-      supplierId = #{supplierid,jdbcType=INTEGER},
-      oTotalMoney = #{ototalmoney,jdbcType=REAL},
-      oState = #{ostate,jdbcType=BIT}
-    where oId = #{oid,jdbcType=INTEGER}
-  </update>
+    <!-- <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
+       insert into orders
+       <trim prefix="(" suffix=")" suffixOverrides="," >
+         <if test="oid != null" >
+           oId,
+         </if>
+         <if test="ocreatetime != null" >
+           oCreateTime,
+         </if>
+         <if test="ochecktime != null" >
+           oCheckTime,
+         </if>
+         <if test="ostartime != null" >
+           oStarTime,
+         </if>
+         <if test="oendtime != null" >
+           oEndTime,
+         </if>
+         <if test="otype != null" >
+           oType,
+         </if>
+         <if test="ocreater != null" >
+           oCreater,
+         </if>
+         <if test="ochecker != null" >
+           oChecker,
+         </if>
+         <if test="ostarter != null" >
+           oStarter,
+         </if>
+         <if test="oender != null" >
+           oEnder,
+         </if>
+         <if test="supplierid != null" >
+           supplierId,
+         </if>
+         <if test="ototalmoney != null" >
+           oTotalMoney,
+         </if>
+         <if test="ostate != null" >
+           oState,
+         </if>
+       </trim>
+       <trim prefix="values (" suffix=")" suffixOverrides="," >
+         <if test="oid != null" >
+           #{oid,jdbcType=INTEGER},
+         </if>
+         <if test="ocreatetime != null" >
+           #{ocreatetime,jdbcType=DATE},
+         </if>
+         <if test="ochecktime != null" >
+           #{ochecktime,jdbcType=DATE},
+         </if>
+         <if test="ostartime != null" >
+           #{ostartime,jdbcType=DATE},
+         </if>
+         <if test="oendtime != null" >
+           #{oendtime,jdbcType=DATE},
+         </if>
+         <if test="otype != null" >
+           #{otype,jdbcType=VARCHAR},
+         </if>
+         <if test="ocreater != null" >
+           #{ocreater,jdbcType=INTEGER},
+         </if>
+         <if test="ochecker != null" >
+           #{ochecker,jdbcType=INTEGER},
+         </if>
+         <if test="ostarter != null" >
+           #{ostarter,jdbcType=INTEGER},
+         </if>
+         <if test="oender != null" >
+           #{oender,jdbcType=INTEGER},
+         </if>
+         <if test="supplierid != null" >
+           #{supplierid,jdbcType=INTEGER},
+         </if>
+         <if test="ototalmoney != null" >
+           #{ototalmoney,jdbcType=REAL},
+         </if>
+         <if test="ostate != null" >
+           #{ostate,jdbcType=BIT},
+         </if>
+       </trim>
+     </insert>
+     <insert id="addOrders"></insert>
+     <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Orders" >
+       update orders
+       <set >
+         <if test="ocreatetime != null" >
+           oCreateTime = #{ocreatetime,jdbcType=DATE},
+         </if>
+         <if test="ochecktime != null" >
+           oCheckTime = #{ochecktime,jdbcType=DATE},
+         </if>
+         <if test="ostartime != null" >
+           oStarTime = #{ostartime,jdbcType=DATE},
+         </if>
+         <if test="oendtime != null" >
+           oEndTime = #{oendtime,jdbcType=DATE},
+         </if>
+         <if test="otype != null" >
+           oType = #{otype,jdbcType=VARCHAR},
+         </if>
+         <if test="ocreater != null" >
+           oCreater = #{ocreater,jdbcType=INTEGER},
+         </if>
+         <if test="ochecker != null" >
+           oChecker = #{ochecker,jdbcType=INTEGER},
+         </if>
+         <if test="ostarter != null" >
+           oStarter = #{ostarter,jdbcType=INTEGER},
+         </if>
+         <if test="oender != null" >
+           oEnder = #{oender,jdbcType=INTEGER},
+         </if>
+         <if test="supplierid != null" >
+           supplierId = #{supplierid,jdbcType=INTEGER},
+         </if>
+         <if test="ototalmoney != null" >
+           oTotalMoney = #{ototalmoney,jdbcType=REAL},
+         </if>
+         <if test="ostate != null" >
+           oState = #{ostate,jdbcType=BIT},
+         </if>
+       </set>
+       where oId = #{oid,jdbcType=INTEGER}
+     </update>
+     <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Orders" >
+       update orders
+       set oCreateTime = #{ocreatetime,jdbcType=DATE},
+         oCheckTime = #{ochecktime,jdbcType=DATE},
+         oStarTime = #{ostartime,jdbcType=DATE},
+         oEndTime = #{oendtime,jdbcType=DATE},
+         oType = #{otype,jdbcType=VARCHAR},
+         oCreater = #{ocreater,jdbcType=INTEGER},
+         oChecker = #{ochecker,jdbcType=INTEGER},
+         oStarter = #{ostarter,jdbcType=INTEGER},
+         oEnder = #{oender,jdbcType=INTEGER},
+         supplierId = #{supplierid,jdbcType=INTEGER},
+         oTotalMoney = #{ototalmoney,jdbcType=REAL},
+         oState = #{ostate,jdbcType=BIT}
+       where oId = #{oid,jdbcType=INTEGER}
+     </update>-->
 </mapper>
