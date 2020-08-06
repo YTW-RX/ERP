@@ -1,8 +1,8 @@
-package com.zking.erp.service.orders.impl;
+package com.zking.erp.services.orders.impl;
 
 import com.zking.erp.mapper.OrdersMapper;
 import com.zking.erp.model.Orders;
-import com.zking.erp.service.orders.IOrdersService;
+import com.zking.erp.services.orders.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

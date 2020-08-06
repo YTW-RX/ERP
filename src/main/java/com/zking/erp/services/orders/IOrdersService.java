@@ -1,4 +1,4 @@
-package com.zking.erp.service.orders;
+package com.zking.erp.services.orders;
 
 import com.zking.erp.model.Orders;
 
