@@ -1,7 +1,9 @@
 package com.zking.erp.mapper;
 
 import com.zking.erp.model.Dep;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DepMapper {
     int deleteByPrimaryKey(Integer depid);
 

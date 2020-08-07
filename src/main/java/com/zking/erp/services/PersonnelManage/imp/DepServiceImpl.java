@@ -47,6 +47,6 @@ public class DepServiceImpl implements lDepService {
 
     @Override
     public List<Dep> selectByDepList() {
-        return depMapper.selectByDepList();
+        return null;
     }
 }
