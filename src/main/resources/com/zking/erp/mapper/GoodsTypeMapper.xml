@@ -16,7 +16,10 @@
     from goodstype
     where gtId = #{gtid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="getGoodsTypes" resultType="com.zking.erp.model.GoodsType">
+      select <include refid="Base_Column_List"/> from goodstype
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from goodstype
     where gtId = #{gtid,jdbcType=INTEGER}
   </delete>
