@@ -1,7 +1,11 @@
 package com.zking.erp.mapper;
 
 import com.zking.erp.model.Store;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface StoreMapper {
     int deleteByPrimaryKey(Integer storeid);
 
@@ -14,4 +18,10 @@ public interface StoreMapper {
     int updateByPrimaryKeySelective(Store record);
 
     int updateByPrimaryKey(Store record);
+
+    /**
+     * 查询所有的仓库
+     * @return
+     */
+    List<Store> getAllStores();
 }
