@@ -8,16 +8,36 @@ import java.util.List;
 @Repository
 public interface OrdersMapper {
 
-    // 录入采购订单（新增订单）
+    /**
+     * 录入订单
+     *
+     * @param orders
+     * @return
+     */
     int insertOrders(Orders orders);
 
-    // 根据订单oid查询单个订单
+    /**
+     * 根据订单oid查询单个订单
+     *
+     * @param oid
+     * @return
+     */
     Orders selectOrders(Integer oid);
 
-    // 查询所有采购订单
-    List<Orders> queryOrdersAllPager();
+    /**
+     * 查询所有采购订单
+     *
+     * @param purchaseSale
+     * @return
+     */
+    List<Orders> queryOrdersAllPager(Integer purchaseSale);
 
-    //修改采购订单状态
+    /**
+     * 修改采购订单状态
+     *
+     * @param orders
+     * @return
+     */
     int updateOrdersState(Orders orders);
 
     /*int deleteByPrimaryKey(Integer oid);

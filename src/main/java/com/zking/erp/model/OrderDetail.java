@@ -21,11 +21,11 @@ public class OrderDetail {
 
     private Integer storeid;
 
-    private Boolean ostate;
+    private String ostate;
 
     private Integer oid;
 
-    public OrderDetail(Integer orderdetailid, Integer gid, String gname, Float oprice, Integer onum, Float omoney, Date oendtime, Integer oender, Integer storeid, Boolean ostate, Integer oid) {
+    public OrderDetail(Integer orderdetailid, Integer gid, String gname, Float oprice, Integer onum, Float omoney, Date oendtime, Integer oender, Integer storeid, String ostate, Integer oid) {
         this.orderdetailid = orderdetailid;
         this.gid = gid;
         this.gname = gname;
@@ -115,11 +115,11 @@ public class OrderDetail {
         this.storeid = storeid;
     }
 
-    public Boolean getOstate() {
+    public String getOstate() {
         return ostate;
     }
 
-    public void setOstate(Boolean ostate) {
+    public void setOstate(String ostate) {
         this.ostate = ostate;
     }
 

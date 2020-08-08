@@ -33,9 +33,11 @@ public class Orders {
 
     private Float ototalmoney;
 
-    private Boolean ostate;
+    private String ostate;
 
-    public Orders(Integer oid, Date ocreatetime, Date ochecktime, Date ostartime, Date oendtime, String otype, Integer ocreater, Integer ochecker, Integer ostarter, Integer oender, Integer supplierid, Float ototalmoney, Boolean ostate) {
+    private Integer purchaseSale;
+
+    public Orders(Integer oid, Date ocreatetime, Date ochecktime, Date ostartime, Date oendtime, String otype, Integer ocreater, Integer ochecker, Integer ostarter, Integer oender, Integer supplierid, Float ototalmoney, String ostate, Integer purchaseSale) {
         this.oid = oid;
         this.ocreatetime = ocreatetime;
         this.ochecktime = ochecktime;
@@ -49,6 +51,7 @@ public class Orders {
         this.supplierid = supplierid;
         this.ototalmoney = ototalmoney;
         this.ostate = ostate;
+        this.purchaseSale = purchaseSale;
     }
 
     public Orders() {
@@ -151,11 +154,19 @@ public class Orders {
         this.ototalmoney = ototalmoney;
     }
 
-    public Boolean getOstate() {
+    public String getOstate() {
         return ostate;
     }
 
-    public void setOstate(Boolean ostate) {
+    public void setOstate(String ostate) {
         this.ostate = ostate;
+    }
+
+    public int getpurchaseSale() {
+        return purchaseSale;
+    }
+
+    public void setpurchaseSale(int purchaseSale) {
+        this.purchaseSale = purchaseSale;
     }
 }

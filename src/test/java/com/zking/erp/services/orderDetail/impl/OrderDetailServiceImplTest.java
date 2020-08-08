@@ -1,0 +1,38 @@
+package com.zking.erp.services.orderDetail.impl;
+
+import com.zking.erp.model.OrderDetail;
+import com.zking.erp.services.orderDetail.IOrderDetailService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static org.junit.Assert.*;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring.xml"})
+public class OrderDetailServiceImplTest {
+
+    @Autowired
+    private IOrderDetailService iOrderDetailService;
+
+    @Test
+    public void insertOrderDetail() {
+        OrderDetail orderDetail=new OrderDetail();
+        orderDetail.setGid(1);
+        orderDetail.setGname("内存条");
+        orderDetail.setOprice(489.50f);
+        orderDetail.setOnum(1);
+        orderDetail.setOmoney(489.50f);
+        orderDetail.setStoreid(1);
+        orderDetail.setOstate("未入库");
+        orderDetail.setOid(1);
+        iOrderDetailService.insertOrderDetail(orderDetail);
+    }
+
+    @Test
+    public void deleteOrderDetail() {
+        iOrderDetailService.deleteOrderDetail(2);
+    }
+}

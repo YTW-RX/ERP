@@ -21,8 +21,8 @@ public class OrdersServiceImpl implements IOrdersService {
     }
 
     @Override
-    public List<Orders> queryOrdersAllPager(PageBean pageBean) {
-        return ordersMapper.queryOrdersAllPager();
+    public List<Orders> queryOrdersAllPager(Integer purchaseSale, PageBean pageBean) {
+        return ordersMapper.queryOrdersAllPager(purchaseSale);
     }
 
     @Override

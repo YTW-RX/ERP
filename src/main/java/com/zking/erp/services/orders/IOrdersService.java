@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface IOrdersService {
 
-    // 录入采购订单（新增订单）
+    // 录入订单（新增订单）
     int insertOrders(Orders orders);
 
     // 查询所有采购订单
-    List<Orders> queryOrdersAllPager(PageBean pageBean);
+    List<Orders> queryOrdersAllPager(Integer purchaseSale, PageBean pageBean);
 
     //修改采购订单状态
     int updateOrdersState(Orders orders);
