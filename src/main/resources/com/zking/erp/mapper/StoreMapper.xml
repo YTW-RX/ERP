@@ -17,7 +17,10 @@
     from store
     where storeId = #{storeid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="getAllStores" resultType="com.zking.erp.model.Store">
+      select <include refid="Base_Column_List"/> from store
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from store
     where storeId = #{storeid,jdbcType=INTEGER}
   </delete>
