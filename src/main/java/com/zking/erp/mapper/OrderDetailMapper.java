@@ -51,4 +51,5 @@ public interface OrderDetailMapper {
      */
     int updateOrderDetailOstate(OrderDetail orderDetail);
 
+
 }
