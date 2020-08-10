@@ -9,6 +9,13 @@
             <arg column="sNum" jdbcType="INTEGER" javaType="java.lang.Integer"/>
         </constructor>
     </resultMap>
+    <!--自定义返回类型-->
+    <resultMap id="oneToOne" type="com.zking.erp.model.StoreDetail">
+        <id column="storedetailId" property="storedetailid"/>
+        <result column="sNum" property="snum"/>
+        <result column="stName" property="stname"/>
+        <result column="gName" property="gname"/>
+    </resultMap>
     <sql id="Base_Column_List">
     storedetailId, storeId, gId, sNum
   </sql>
@@ -17,6 +24,17 @@
         <include refid="Base_Column_List"/>
         from storedetail
         where storedetailId = #{storedetailid,jdbcType=INTEGER}
+    </select>
+    <select id="getStoredetailByStoreIdAndGid" resultMap="oneToOne">
+        select sd.storedetailId,s.stName,g.gName,sd.sNum from store s
+        RIGHT JOIN storedetail sd on s.storeId=sd.storeId
+        LEFT JOIN goods g on g.gId=sd.gId where 1=1
+        <if test="null !=storeId">
+            and s.storeId=#{storeId}
+        </if>
+        <if test="null !=gId">
+            and g.gId=#{gId}
+        </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from storedetail

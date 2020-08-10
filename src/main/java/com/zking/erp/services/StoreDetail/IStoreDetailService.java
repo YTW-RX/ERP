@@ -1,6 +1,11 @@
 package com.zking.erp.services.StoreDetail;
 
 import com.zking.erp.model.StoreDetail;
+import com.zking.erp.util.JsonResponseBody;
+import com.zking.erp.util.PageBean;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface IStoreDetailService {
 
@@ -19,5 +24,8 @@ public interface IStoreDetailService {
      * @return
      */
     int cutStoredetailNum(StoreDetail storeDetail);
+
+    //Goods Store多表查询
+    JsonResponseBody<List<StoreDetail>> getStoredetailByStoreIdAndGid(Integer storeId, Integer gId, PageBean pageBean);
 
 }
