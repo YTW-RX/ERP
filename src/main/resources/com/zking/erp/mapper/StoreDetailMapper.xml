@@ -81,11 +81,20 @@
         sNum = #{snum,jdbcType=INTEGER}
       where storedetailId = #{storedetailid,jdbcType=INTEGER}
     </update>
-    <update id="updateStoredetailNum" parameterType="com.zking.erp.model.StoreDetail">
+    <update id="addStoredetailNum" parameterType="com.zking.erp.model.StoreDetail">
         update storedetail
         <set>
             <if test="gid != null and snum != null">
-                sNum = #{snum,jdbcType=INTEGER}+sNum,
+                sNum = #{snum,jdbcType=INTEGER} + sNum,
+            </if>
+        </set>
+        where gId = #{gid,jdbcType=INTEGER}
+    </update>
+    <update id="cutStoredetailNum" parameterType="com.zking.erp.model.StoreDetail">
+        update storedetail
+        <set>
+            <if test="gid != null and snum != null">
+                sNum = #{snum,jdbcType=INTEGER} - sNum,
             </if>
         </set>
         where gId = #{gid,jdbcType=INTEGER}

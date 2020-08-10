@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,7 +21,7 @@ public class OrderDetailServiceImplTest {
 
     @Test
     public void insertOrderDetail() {
-        OrderDetail orderDetail=new OrderDetail();
+        OrderDetail orderDetail = new OrderDetail();
         orderDetail.setGid(1);
         orderDetail.setGname("内存条");
         orderDetail.setOprice(489.50f);
@@ -34,5 +36,11 @@ public class OrderDetailServiceImplTest {
     @Test
     public void deleteOrderDetail() {
         iOrderDetailService.deleteOrderDetail(2);
+    }
+
+    @Test
+    public void queryOrderDetail() {
+        int oid = 1;
+        iOrderDetailService.queryOrderDetail(oid);
     }
 }

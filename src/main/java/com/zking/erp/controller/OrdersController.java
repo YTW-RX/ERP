@@ -21,15 +21,18 @@ public class OrdersController {
     private IOrdersService iOrdersService;
 
     @RequestMapping(value = "/toInsertOrders")
-    @ResponseBody
     public String toInsertOrders(Orders orders) {
         iOrdersService.insertOrders(orders);
-        return "redirect:queryOrdersAllPager";
+        if (orders.getpurchaseSale() == 0) {
+            return "redirect:queryOrdersPurchasePager";
+        } else {
+            return "redirect:queryOrdersSalePager";
+        }
     }
 
-    @RequestMapping("/queryOrdersAllPager")
+    @RequestMapping("/queryOrdersPurchasePager")
     @ResponseBody
-    public Map<String, Object> queryOrdersAllPager(HttpServletRequest req) {
+    public Map<String, Object> queryOrdersPurchasePager(HttpServletRequest req) {
         PageBean pageBean = new PageBean();
         pageBean.setRequest(req);
         List<Orders> rows = iOrdersService.queryOrdersAllPager(0, pageBean);
@@ -39,11 +42,26 @@ public class OrdersController {
         return map;
     }
 
-    @RequestMapping("/updateOrderState")
+    @RequestMapping("/queryOrdersSalePager")
     @ResponseBody
+    public Map<String, Object> queryOrdersSalePager(HttpServletRequest req) {
+        PageBean pageBean = new PageBean();
+        pageBean.setRequest(req);
+        List<Orders> rows = iOrdersService.queryOrdersAllPager(1, pageBean);
+        Map<String, Object> map = new HashMap<>();
+        map.put("pageBean", pageBean);
+        map.put("row", rows);
+        return map;
+    }
+
+    @RequestMapping("/updateOrderState")
     public String updateOrderState(Orders orders) {
         iOrdersService.updateOrdersState(orders);
-        return "redirect:queryOrdersAllPager";
+        if (orders.getpurchaseSale() == 0) {
+            return "redirect:queryOrdersPurchasePager";
+        } else {
+            return "redirect:queryOrdersSalePager";
+        }
     }
 
 }

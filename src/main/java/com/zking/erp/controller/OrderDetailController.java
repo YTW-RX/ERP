@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/OrderDetail")
 public class OrderDetailController {
@@ -14,16 +16,45 @@ public class OrderDetailController {
     @Autowired
     private IOrderDetailService iOrderDetailService;
 
-    @RequestMapping("/insertOrderDetail")
+    @RequestMapping("/queryOrderDetail")
     @ResponseBody
-    public void insertOrderDetail(OrderDetail orderDetail) {
-        iOrderDetailService.insertOrderDetail(orderDetail);
+    public List<OrderDetail> queryOrderDetail(Integer oid) {
+        List<OrderDetail> rows = iOrderDetailService.queryOrderDetail(oid);
+        return rows;
     }
 
+    /**
+     * 修改商品状态
+     *
+     * @param orderDetail
+     * @return
+     */
+    @RequestMapping("/updateOrderState")
+    public String updateOrderState(OrderDetail orderDetail) {
+        iOrderDetailService.updateOrderDetailOstate(orderDetail);
+        return "redirect:queryOrderDetail";
+    }
+
+    /**
+     * 新增商品
+     *
+     * @param orderDetail
+     */
+    @RequestMapping("/insertOrderDetail")
+    public String insertOrderDetail(OrderDetail orderDetail) {
+        iOrderDetailService.insertOrderDetail(orderDetail);
+        return "redirect:queryOrderDetail";
+    }
+
+    /**
+     * 删除商品
+     *
+     * @param orderdetailid
+     */
     @RequestMapping("/deleteOrderDetail")
-    @ResponseBody
-    public void deleteOrderDetail(Integer orderdetailid) {
+    public String deleteOrderDetail(Integer orderdetailid) {
         iOrderDetailService.deleteOrderDetail(orderdetailid);
+        return "redirect:queryOrderDetail";
     }
 
 }

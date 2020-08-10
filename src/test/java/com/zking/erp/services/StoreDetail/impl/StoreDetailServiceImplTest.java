@@ -22,6 +22,6 @@ public class StoreDetailServiceImplTest {
         StoreDetail storeDetail = new StoreDetail();
         storeDetail.setGid(1);
         storeDetail.setSnum(10);
-        iStoreDetailService.updateStoredetailNum(storeDetail);
+        iStoreDetailService.addStoredetailNum(storeDetail);
     }
 }

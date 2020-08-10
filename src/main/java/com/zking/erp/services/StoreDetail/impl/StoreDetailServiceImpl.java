@@ -13,8 +13,13 @@ public class StoreDetailServiceImpl implements IStoreDetailService {
     private StoreDetailMapper storeDetailMapper;
 
     @Override
-    public int updateStoredetailNum(StoreDetail storeDetail) {
-        return storeDetailMapper.updateStoredetailNum(storeDetail);
+    public int addStoredetailNum(StoreDetail storeDetail) {
+        return storeDetailMapper.addStoredetailNum(storeDetail);
+    }
+
+    @Override
+    public int cutStoredetailNum(StoreDetail storeDetail) {
+        return storeDetailMapper.cutStoredetailNum(storeDetail);
     }
 
 }
