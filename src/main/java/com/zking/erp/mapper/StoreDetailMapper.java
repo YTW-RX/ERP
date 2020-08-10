@@ -1,7 +1,10 @@
 package com.zking.erp.mapper;
 
 import com.zking.erp.model.StoreDetail;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface StoreDetailMapper {
@@ -17,6 +20,28 @@ public interface StoreDetailMapper {
 
     int updateByPrimaryKey(StoreDetail record);
 
-    // 增加库存（入库后的操作）
-    int updateStoredetailNum(StoreDetail storeDetail);
+    /**
+     * 增加库存（入库后的操作）
+     *
+     * @param storeDetail
+     * @return
+     */
+    int addStoredetailNum(StoreDetail storeDetail);
+
+    /**
+     * 减少库存（出库后的操作）
+     *
+     * @param storeDetail
+     * @return
+     */
+    int cutStoredetailNum(StoreDetail storeDetail);
+
+    /**
+     * Goods Store 多变联查
+     *
+     * @param storeId
+     * @param gId
+     * @return
+     */
+    List<StoreDetail> getStoredetailByStoreIdAndGid(@Param("storeId") Integer storeId, @Param("gId") Integer gId);
 }
