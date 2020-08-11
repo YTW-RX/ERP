@@ -8,7 +8,7 @@
             <arg column="oCheckTime" jdbcType="DATE" javaType="java.util.Date"/>
             <arg column="oStarTime" jdbcType="DATE" javaType="java.util.Date"/>
             <arg column="oEndTime" jdbcType="DATE" javaType="java.util.Date"/>
-            <arg column="oType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="oType" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="oCreater" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="oChecker" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="oStarter" jdbcType="INTEGER" javaType="java.lang.Integer"/>
@@ -16,7 +16,6 @@
             <arg column="supplierId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="oTotalMoney" jdbcType="REAL" javaType="java.lang.Float"/>
             <arg column="oState" jdbcType="BIT" javaType="java.lang.String"/>
-            <arg column="purchase_sale" jdbcType="INTEGER" javaType="java.lang.Integer"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
@@ -42,19 +41,19 @@
         select
         <include refid="Base_Column_List"/>
         from orders
-        where purchase_sale = #{purchaseSale,jdbcType=INTEGER}
+        where oType = #{otype,jdbcType=INTEGER}
     </select>
     <insert id="insertOrders" parameterType="com.zking.erp.model.Orders">
     insert into orders (oCreateTime, oCheckTime,
       oStarTime, oEndTime, oType, 
       oCreater, oChecker, oStarter, 
       oEnder, supplierId, oTotalMoney, 
-      oState,purchase_sale)
+      oState)
     values (#{ocreatetime,jdbcType=DATE}, #{ochecktime,jdbcType=DATE},
-      #{ostartime,jdbcType=DATE}, #{oendtime,jdbcType=DATE}, #{otype,jdbcType=VARCHAR}, 
+      #{ostartime,jdbcType=DATE}, #{oendtime,jdbcType=DATE}, #{otype,jdbcType=INTEGER},
       #{ocreater,jdbcType=INTEGER}, #{ochecker,jdbcType=INTEGER}, #{ostarter,jdbcType=INTEGER}, 
       #{oender,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{ototalmoney,jdbcType=REAL}, 
-      #{ostate,jdbcType=BIT}, #{purchaseSale,jdbcType=INTEGER})
+      #{ostate,jdbcType=BIT})
   </insert>
     <!-- <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
        insert into orders

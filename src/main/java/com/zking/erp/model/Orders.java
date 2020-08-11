@@ -19,7 +19,7 @@ public class Orders {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date oendtime;
 
-    private String otype;
+    private Integer otype;
 
     private Integer ocreater;
 
@@ -35,9 +35,7 @@ public class Orders {
 
     private String ostate;
 
-    private Integer purchaseSale;
-
-    public Orders(Integer oid, Date ocreatetime, Date ochecktime, Date ostartime, Date oendtime, String otype, Integer ocreater, Integer ochecker, Integer ostarter, Integer oender, Integer supplierid, Float ototalmoney, String ostate, Integer purchaseSale) {
+    public Orders(Integer oid, Date ocreatetime, Date ochecktime, Date ostartime, Date oendtime, Integer otype, Integer ocreater, Integer ochecker, Integer ostarter, Integer oender, Integer supplierid, Float ototalmoney, String ostate) {
         this.oid = oid;
         this.ocreatetime = ocreatetime;
         this.ochecktime = ochecktime;
@@ -51,7 +49,6 @@ public class Orders {
         this.supplierid = supplierid;
         this.ototalmoney = ototalmoney;
         this.ostate = ostate;
-        this.purchaseSale = purchaseSale;
     }
 
     public Orders() {
@@ -98,11 +95,11 @@ public class Orders {
         this.oendtime = oendtime;
     }
 
-    public String getOtype() {
+    public Integer getOtype() {
         return otype;
     }
 
-    public void setOtype(String otype) {
+    public void setOtype(Integer otype) {
         this.otype = otype;
     }
 
@@ -160,13 +157,5 @@ public class Orders {
 
     public void setOstate(String ostate) {
         this.ostate = ostate;
-    }
-
-    public int getpurchaseSale() {
-        return purchaseSale;
-    }
-
-    public void setpurchaseSale(int purchaseSale) {
-        this.purchaseSale = purchaseSale;
     }
 }

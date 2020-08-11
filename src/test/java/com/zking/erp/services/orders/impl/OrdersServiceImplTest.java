@@ -25,7 +25,7 @@ public class OrdersServiceImplTest {
         orders.setOchecktime(new Date());
         orders.setOstartime(new Date());
         orders.setOendtime(new Date());
-        orders.setOtype("测试");
+        orders.setOtype(0);
         orders.setOcreater(1);
         orders.setOchecker(1);
         orders.setOstarter(1);

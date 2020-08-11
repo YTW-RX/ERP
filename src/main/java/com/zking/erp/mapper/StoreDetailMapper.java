@@ -1,7 +1,7 @@
 package com.zking.erp.mapper;
 
 import com.zking.erp.model.StoreDetail;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

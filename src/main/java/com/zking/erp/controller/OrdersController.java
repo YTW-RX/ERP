@@ -23,7 +23,7 @@ public class OrdersController {
     @RequestMapping(value = "/toInsertOrders")
     public String toInsertOrders(Orders orders) {
         iOrdersService.insertOrders(orders);
-        if (orders.getpurchaseSale() == 0) {
+        if (orders.getOtype() == 0) {
             return "redirect:queryOrdersPurchasePager";
         } else {
             return "redirect:queryOrdersSalePager";
@@ -57,7 +57,7 @@ public class OrdersController {
     @RequestMapping("/updateOrderState")
     public String updateOrderState(Orders orders) {
         iOrdersService.updateOrdersState(orders);
-        if (orders.getpurchaseSale() == 0) {
+        if (orders.getOtype() == 0) {
             return "redirect:queryOrdersPurchasePager";
         } else {
             return "redirect:queryOrdersSalePager";

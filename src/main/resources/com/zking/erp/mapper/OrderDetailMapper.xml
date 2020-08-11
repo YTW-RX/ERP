@@ -26,7 +26,7 @@
         from orderdetail
         where orderdetailId = #{orderdetailid,jdbcType=INTEGER}
     </select>
-    <select id="queryOrderDetail" resultType="com.zking.erp.model.OrderDetail">
+    <select id="queryOrderDetail" resultType="com.zking.erp.model.OrderDetail" parameterType="java.lang.Integer">
         select <include refid="Base_Column_List"></include> from orderdetail
         where oId = #{oid,jdbcType=INTEGER}
     </select>
