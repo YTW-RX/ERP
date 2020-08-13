@@ -15,18 +15,36 @@
             <arg column="oEnder" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="supplierId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="oTotalMoney" jdbcType="REAL" javaType="java.lang.Float"/>
-            <arg column="oState" jdbcType="BIT" javaType="java.lang.String"/>
+            <arg column="oState" jdbcType="VARCHAR" javaType="java.lang.String"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
     oId, oCreateTime, oCheckTime, oStarTime, oEndTime, oType, oCreater, oChecker, oStarter, 
-    oEnder, supplierId, oTotalMoney, oState,purchase_sale
+    oEnder, supplierId, oTotalMoney, oState
   </sql>
     <update id="updateOrdersState" parameterType="com.zking.erp.model.Orders">
         update orders
         <set>
+            <if test="ochecktime != null">
+                oCheckTime = #{ochecktime,jdbcType=DATE},
+            </if>
+            <if test="ostartime != null">
+                oStarTime = #{ostartime,jdbcType=DATE},
+            </if>
+            <if test="oendtime != null">
+                oEndTime = #{oendtime,jdbcType=DATE},
+            </if>
+            <if test="ochecker != null">
+                oChecker = #{ochecker,jdbcType=INTEGER},
+            </if>
+            <if test="ostarter != null">
+                oStarter = #{ostarter,jdbcType=INTEGER},
+            </if>
+            <if test="oender != null">
+                oEnder = #{oender,jdbcType=INTEGER},
+            </if>
             <if test="ostate != null">
-                oState = #{ostate,jdbcType=BIT},
+                oState = #{ostate,jdbcType=VARCHAR},
             </if>
         </set>
         where oId = #{oid,jdbcType=INTEGER}
@@ -43,6 +61,12 @@
         from orders
         where oType = #{otype,jdbcType=INTEGER}
     </select>
+    <select id="queryOrdersPager" resultMap="BaseResultMap" resultType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where oState like '%${oState}%'
+    </select>
     <insert id="insertOrders" parameterType="com.zking.erp.model.Orders">
     insert into orders (oCreateTime, oCheckTime,
       oStarTime, oEndTime, oType, 
@@ -53,7 +77,7 @@
       #{ostartime,jdbcType=DATE}, #{oendtime,jdbcType=DATE}, #{otype,jdbcType=INTEGER},
       #{ocreater,jdbcType=INTEGER}, #{ochecker,jdbcType=INTEGER}, #{ostarter,jdbcType=INTEGER}, 
       #{oender,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{ototalmoney,jdbcType=REAL}, 
-      #{ostate,jdbcType=BIT})
+      #{ostate,jdbcType=VARCHAR})
   </insert>
     <!-- <insert id="insertSelective" parameterType="com.zking.erp.model.Orders" >
        insert into orders

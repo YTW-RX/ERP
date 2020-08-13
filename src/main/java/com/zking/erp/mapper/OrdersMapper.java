@@ -1,6 +1,7 @@
 package com.zking.erp.mapper;
 
 import com.zking.erp.model.Orders;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,10 +28,18 @@ public interface OrdersMapper {
     /**
      * 查询所有采购订单
      *
-     * @param purchaseSale
+     * @param oType
      * @return
      */
-    List<Orders> queryOrdersAllPager(Integer purchaseSale);
+    List<Orders> queryOrdersAllPager(Integer oType);
+
+    /**
+     * 查询未审核的采购订单
+     *
+     * @param oState
+     * @return
+     */
+    List<Orders> queryOrdersPager(@Param("oState") String oState);
 
     /**
      * 修改采购订单状态

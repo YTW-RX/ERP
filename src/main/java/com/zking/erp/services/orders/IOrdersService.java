@@ -13,6 +13,14 @@ public interface IOrdersService {
     // 查询所有采购订单
     List<Orders> queryOrdersAllPager(Integer purchaseSale, PageBean pageBean);
 
+    /**
+     * 查询未审核的采购订单
+     *
+     * @param oState
+     * @return
+     */
+    List<Orders> queryOrdersPager(String oState, PageBean pageBean);
+
     //修改采购订单状态
     int updateOrdersState(Orders orders);
 

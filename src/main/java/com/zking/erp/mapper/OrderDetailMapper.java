@@ -51,5 +51,13 @@ public interface OrderDetailMapper {
      */
     int updateOrderDetailOstate(OrderDetail orderDetail);
 
+    /**
+     * 统计指定订单编号oId里的商品还要多少未入库
+     *
+     * @param orderDetail
+     * @return
+     */
+    int queryOrderDetailCount(OrderDetail orderDetail);
+
 
 }

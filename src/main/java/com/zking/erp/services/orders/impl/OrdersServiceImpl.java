@@ -26,6 +26,11 @@ public class OrdersServiceImpl implements IOrdersService {
     }
 
     @Override
+    public List<Orders> queryOrdersPager(String oState, PageBean pageBean) {
+        return ordersMapper.queryOrdersPager(oState);
+    }
+
+    @Override
     public int updateOrdersState(Orders orders) {
         return ordersMapper.updateOrdersState(orders);
     }

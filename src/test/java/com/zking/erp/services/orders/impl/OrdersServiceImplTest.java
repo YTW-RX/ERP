@@ -22,17 +22,17 @@ public class OrdersServiceImplTest {
     public void insertOrders() {
         Orders orders = new Orders();
         orders.setOcreatetime(new Date());
-        orders.setOchecktime(new Date());
+        /*orders.setOchecktime(new Date());
         orders.setOstartime(new Date());
-        orders.setOendtime(new Date());
+        orders.setOendtime(new Date());*/
         orders.setOtype(0);
         orders.setOcreater(1);
-        orders.setOchecker(1);
-        orders.setOstarter(1);
-        orders.setOender(1);
-        orders.setOtotalmoney(489.50f);
+        orders.setSupplierid(1);
+        orders.setOtotalmoney(618.50f);
         orders.setOstate("未审核");
-        iOrdersService.insertOrders(orders);
+        for (int i = 1; i < 10; i++) {
+            iOrdersService.insertOrders(orders);
+        }
     }
 
     @Test

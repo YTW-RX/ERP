@@ -1,23 +1,37 @@
 package com.zking.erp.controller;
 
 import com.zking.erp.model.OrderDetail;
+import com.zking.erp.model.Orders;
 import com.zking.erp.services.orderDetail.IOrderDetailService;
+import com.zking.erp.services.orders.IOrdersService;
+import com.zking.erp.util.JsonResponseBody;
+import com.zking.erp.util.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
+@ResponseBody
 @RequestMapping("/OrderDetail")
 public class OrderDetailController {
 
     @Autowired
     private IOrderDetailService iOrderDetailService;
 
+    @Autowired
+    private IOrdersService iOrdersService;
+
+    /**
+     * 根据订单编号查询所有的商品
+     *
+     * @param oid
+     * @return
+     */
     @RequestMapping("/queryOrderDetail")
-    @ResponseBody
     public List<OrderDetail> queryOrderDetail(Integer oid) {
         List<OrderDetail> rows = iOrderDetailService.queryOrderDetail(oid);
         return rows;
@@ -30,9 +44,23 @@ public class OrderDetailController {
      * @return
      */
     @RequestMapping("/updateOrderState")
-    public String updateOrderState(OrderDetail orderDetail) {
-        iOrderDetailService.updateOrderDetailOstate(orderDetail);
-        return "redirect:queryOrderDetail";
+    public JsonResponseBody updateOrderState(OrderDetail orderDetail) {
+        int i = iOrderDetailService.updateOrderDetailOstate(orderDetail);
+        orderDetail.setOstate("未入库");
+        int count = iOrderDetailService.queryOrderDetailCount(orderDetail);
+        if (count == 0) {
+            Orders orders = new Orders();
+            orders.setOid(orderDetail.getOid());
+            orders.setOender(orderDetail.getOender());
+            orders.setOendtime(orderDetail.getOendtime());
+            orders.setOstate("已入库");
+            iOrdersService.updateOrdersState(orders);
+        }
+        if (i > 0) {
+            return new JsonResponseBody(ResponseStatus.STATUS_200);
+        } else {
+            return new JsonResponseBody(ResponseStatus.STATUS_201);
+        }
     }
 
     /**
@@ -41,9 +69,13 @@ public class OrderDetailController {
      * @param orderDetail
      */
     @RequestMapping("/insertOrderDetail")
-    public String insertOrderDetail(OrderDetail orderDetail) {
-        iOrderDetailService.insertOrderDetail(orderDetail);
-        return "redirect:queryOrderDetail";
+    public JsonResponseBody insertOrderDetail(OrderDetail orderDetail) {
+        int i = iOrderDetailService.insertOrderDetail(orderDetail);
+        if (i > 0) {
+            return new JsonResponseBody(ResponseStatus.STATUS_200);
+        } else {
+            return new JsonResponseBody(ResponseStatus.STATUS_201);
+        }
     }
 
     /**
@@ -52,9 +84,13 @@ public class OrderDetailController {
      * @param orderdetailid
      */
     @RequestMapping("/deleteOrderDetail")
-    public String deleteOrderDetail(Integer orderdetailid) {
-        iOrderDetailService.deleteOrderDetail(orderdetailid);
-        return "redirect:queryOrderDetail";
+    public JsonResponseBody deleteOrderDetail(Integer orderdetailid) {
+        int i = iOrderDetailService.deleteOrderDetail(orderdetailid);
+        if (i > 0) {
+            return new JsonResponseBody(ResponseStatus.STATUS_200);
+        } else {
+            return new JsonResponseBody(ResponseStatus.STATUS_201);
+        }
     }
 
 }

@@ -33,4 +33,9 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
     public int updateOrderDetailOstate(OrderDetail orderDetail) {
         return orderDetailMapper.updateOrderDetailOstate(orderDetail);
     }
+
+    @Override
+    public int queryOrderDetailCount(OrderDetail orderDetail) {
+        return orderDetailMapper.queryOrderDetailCount(orderDetail);
+    }
 }

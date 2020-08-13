@@ -24,12 +24,12 @@ public class OrderDetailServiceImplTest {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setGid(1);
         orderDetail.setGname("内存条");
-        orderDetail.setOprice(489.50f);
+        orderDetail.setOprice(618.50f);
         orderDetail.setOnum(1);
-        orderDetail.setOmoney(489.50f);
+        orderDetail.setOmoney(618.50f);
         orderDetail.setStoreid(1);
         orderDetail.setOstate("未入库");
-        orderDetail.setOid(1);
+        orderDetail.setOid(2);
         iOrderDetailService.insertOrderDetail(orderDetail);
     }
 
@@ -42,5 +42,14 @@ public class OrderDetailServiceImplTest {
     public void queryOrderDetail() {
         int oid = 1;
         iOrderDetailService.queryOrderDetail(oid);
+    }
+
+    @Test
+    public void queryOrderDetailCount() {
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOid(33);
+        orderDetail.setOstate("未入库");
+        int i = iOrderDetailService.queryOrderDetailCount(orderDetail);
+        System.out.println(i);
     }
 }
