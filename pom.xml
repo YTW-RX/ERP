@@ -42,7 +42,7 @@
     <!-- spring-data-redis 依赖-->
     <spring-data-redis.version>1.7.1.RELEASE</spring-data-redis.version>
     <!--jackson-->
-    <jackson.version>2.9.3</jackson.version>
+    <jackson.version>2.12.1</jackson.version>
     <!--jstl+standard-->
     <jstl.version>1.2</jstl.version>
     <standard.version>1.1.2</standard.version>
