@@ -51,7 +51,7 @@
     <!--jsr303.version-->
     <JSR303.version>6.0.7.Final</JSR303.version>
     <!--shiro.version-->
-    <shiro.version>1.2.5</shiro.version>
+    <shiro.version>1.10.0</shiro.version>
   </properties>
 
   <dependencies>
